@@ -1,0 +1,23 @@
+<mat-toolbar color="primary">  
+  <mat-toolbar-row>
+    <span>Survey Forms Admin</span>
+    <span class="space"></span>
+    <button *ngIf="!isAuth" mat-button (click)="signIn()">Sign in</button>
+    <button *ngIf="isAuth" mat-icon-button [matMenuTriggerFor]="menu" >
+      <mat-icon>person</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="showToken()">
+        <span>User details</span>
+      </button> 
+      <button mat-menu-item (click)="signOut()">
+        <span>Sign out</span>
+      </button>      
+    </mat-menu>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div [style.height.px]="mainContentHeight">
+    <router-outlet></router-outlet>
+</div>
+
+

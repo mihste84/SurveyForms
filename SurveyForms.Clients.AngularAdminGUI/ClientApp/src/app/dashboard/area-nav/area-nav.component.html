@@ -1,0 +1,13 @@
+<mat-list>
+    <h3 mat-subheader>Survey form areas</h3>
+    <mat-list-item class="pointer" (click)="selectFormArea(area)" *ngFor="let area of areas">
+        <mat-icon *ngIf="selectedAreaId === area.formAreaId" mat-list-icon style="font-size: 1.4rem">folder_open</mat-icon>
+        <mat-icon *ngIf="selectedAreaId !== area.formAreaId" mat-list-icon style="font-size: 1.4rem">folder</mat-icon>
+        <span [title]="area.name" class="form-area-list-text ellipsis single-line">{{area.name}}</span>
+        <div class="space"></div>
+        <p class="single-line form-area-list-count" > {{area.formCount}} {{area.formCount === 1 ? 'form' : 'forms'}}</p>
+    </mat-list-item>
+    <mat-list-item *ngIf="!areas?.length">
+        No form areas created
+    </mat-list-item>    
+</mat-list>

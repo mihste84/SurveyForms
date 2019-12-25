@@ -1,0 +1,32 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.space {
+    flex: 1 1 auto;
+}
+
+.single-line {
+    white-space: nowrap;
+}
+
+.ellipsis {
+    overflow: hidden;
+    display: inline-block;
+    text-overflow: ellipsis;    
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.icon-button {
+    padding: 0 !important; 
+    margin: 0 !important; 
+    min-width: 35px !important;
+}

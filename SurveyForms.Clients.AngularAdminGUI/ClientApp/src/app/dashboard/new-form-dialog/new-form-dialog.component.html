@@ -1,0 +1,21 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h1 mat-dialog-title>Create new form</h1>
+    <div  mat-dialog-content>
+        <mat-form-field appearance="standard" class="full-width" hintLabel="Name must be between 3 and 50 characters">
+            <mat-label>Form name</mat-label>
+            <input matInput formControlName="name"  #input  >
+            <mat-hint align="end">{{input.value.length}} / 50</mat-hint>
+        </mat-form-field>
+    
+        <mat-form-field class="full-width" appearance="standard" >
+            <mat-label>Form description</mat-label>
+            <textarea matInput #textInput formControlName="description"  placeholder="Form description"></textarea>
+            <mat-hint align="end">{{textInput.value.length}} / 300</mat-hint>
+        </mat-form-field>
+    </div>
+    
+    <div mat-dialog-actions>
+        <button mat-button (click)="closeDialog()">Cancel</button>
+        <button mat-button type="submit" [disabled]="form.invalid">Submit</button>
+    </div>
+</form>

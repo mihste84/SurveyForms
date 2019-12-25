@@ -1,0 +1,14 @@
+<head>
+        <title></title>
+    </head>
+    <body>
+    <script src="oidc-client.min.js"></script>
+    <script>
+        var mgr = new Oidc.UserManager();
+        mgr.signoutPopupCallback(null, false).then(() => {
+            window.location = "/";
+        }, error => {
+            console.error(error);
+        });
+    </script>
+    </body>

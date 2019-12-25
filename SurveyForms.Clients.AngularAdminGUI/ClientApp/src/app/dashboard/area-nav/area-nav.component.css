@@ -1,0 +1,11 @@
+.form-area-list-count {
+    background-color: #e0e0e0;
+    padding: 3px 6px;
+    border-radius: 16px;
+    font-size: 0.9rem;
+}
+
+.form-area-list-text {
+    width: 7rem;
+    font-size: 0.9rem;
+}

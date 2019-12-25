@@ -1,0 +1,19 @@
+<head>
+        <title></title>
+    </head>
+    <body>
+    <script src="oidc-client.min.js"></script>
+    <script>
+        var mgr = new Oidc.UserManager();
+        mgr.signinPopupCallback().then(() => {
+            // window.history.replaceState({}, window.document.title, window.location.origin);
+            // window.location = "/";
+        }, error => {
+            console.error(error);
+        });
+    mgr.signinSilentCallback().then(() => {
+        }, error => {
+            console.error(error);
+        });
+    </script>
+    </body>
