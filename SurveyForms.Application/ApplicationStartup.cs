@@ -2,9 +2,9 @@
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using SurveyForms.Application.Common.Behaviours;
+using SurveyForms.Application.FormAreas.Commands.CreateFormArea;
 using System.Collections.Generic;
 using System.Reflection;
-using SurveyForms.Application.FormAreas.Commands;
 
 namespace SurveyForms.Application
 {

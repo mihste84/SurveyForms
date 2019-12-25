@@ -6,6 +6,9 @@ import { AuthHttpService } from '../../security/auth-http.service';
 import { ApiUrls } from '../../constants/api-urls';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NewFormDialogComponent } from '../new-form-dialog/new-form-dialog.component';
+import { EditFormAreaDialogComponent } from '../edit-form-area-dialog/edit-form-area-dialog.component';
+import { mergeMap, flatMap, map, switchMap } from 'rxjs/operators';
+import { of, from, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -19,27 +22,44 @@ export class DashboardPageComponent implements OnInit {
 
   constructor(private dialog: MatDialog, private http: AuthHttpService, private snackBar: MatSnackBar) { }
 
-  public selectFormArea(area: IFormArea, refresh: boolean = false) {
-    if (!refresh && this.selectedArea && area.formAreaId === this.selectedArea.formAreaId) { return; }
+  public selectFormArea(area: IFormArea) {
+    if (this.selectedArea && area.formAreaId === this.selectedArea.formAreaId) { return; }
 
-    this.http.get<IForm[]>(ApiUrls.Form + `/${area.formAreaId}`).subscribe(_ => {
+    return this.http.get<IForm[]>(ApiUrls.Form + `/${area.formAreaId}`).subscribe(_ => {
       this.selectedForms = _;
       this.selectedArea = area;
     });
   }
 
   public editFormArea() {
+    const dialogRef = this.dialog.open(EditFormAreaDialogComponent, {
+      width: '350px',
+      data: this.selectedArea,
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe((model: { name: string }) => {
+      if (model) {
+        this.http.post<number>(ApiUrls.FormArea, { areaId: this.selectedArea.formAreaId, ...model }).subscribe(_ => {
+          return this.http.get<IFormArea[]>(ApiUrls.FormArea).subscribe((data) => {
+            this.areas = data;
+            this.selectedArea = this.areas.find(x => x.formAreaId === this.selectedArea.formAreaId);
+            this.openSnackbar(`Successfully edited form area.`, 'Dismiss', 5000);
+          });
+        });
+      }
+    });
   }
 
   public addNewForm() {
     const dialogRef = this.dialog.open(NewFormDialogComponent, {
-      width: '550px', disableClose: true
+      width: '550px',
+      disableClose: true
     });
 
     dialogRef.afterClosed().subscribe((model: { name: string, description: string}) => {
       if (model) {
         this.http.put(ApiUrls.Form, { areaId: this.selectedArea.formAreaId, ...model }).subscribe(() => {
-          this.refreshForms();
           this.getAllFormAreas();
           this.openSnackbar(`Successfully created form '${model.name}'`, 'Dismiss', 5000);
         });
@@ -63,7 +83,7 @@ export class DashboardPageComponent implements OnInit {
   }
 
   public getAllFormAreas() {
-    this.http.get<IFormArea[]>(ApiUrls.FormArea).subscribe(_ => {
+    return this.http.get<IFormArea[]>(ApiUrls.FormArea).subscribe(_ => {
       this.areas = _;
     });
   }
@@ -85,7 +105,7 @@ export class DashboardPageComponent implements OnInit {
   }
 
   public refreshForms() {
-    this.http.get<IForm[]>(ApiUrls.Form + `/${this.selectedArea.formAreaId}`).subscribe(_ => this.selectedForms = _);
+    return this.http.get<IForm[]>(ApiUrls.Form + `/${this.selectedArea.formAreaId}`).subscribe(_ => this.selectedForms = _);
   }
 
   ngOnInit() {

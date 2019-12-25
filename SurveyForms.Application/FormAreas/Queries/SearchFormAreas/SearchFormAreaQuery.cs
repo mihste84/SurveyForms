@@ -5,7 +5,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SurveyForms.Application.FormAreas.Queries
+namespace SurveyForms.Application.FormAreas.Queries.SearchFormAreas
 {
     public class SearchFormAreaQuery : BasePagedQuery, IRequest<BasePagedSearchResult<FormAreaDto>>
     {

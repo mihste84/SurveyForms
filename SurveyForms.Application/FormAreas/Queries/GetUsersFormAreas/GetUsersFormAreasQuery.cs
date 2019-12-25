@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SurveyForms.Application.FormAreas.Queries
+namespace SurveyForms.Application.FormAreas.Queries.GetUsersFormAreas
 {
     public class GetUsersFormAreasQuery : IRequest<IEnumerable<FormAreaDto>>
     {

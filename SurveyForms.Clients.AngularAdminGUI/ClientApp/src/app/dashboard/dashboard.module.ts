@@ -17,9 +17,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NewFormDialogComponent } from './new-form-dialog/new-form-dialog.component';
+import { EditFormAreaDialogComponent } from './edit-form-area-dialog/edit-form-area-dialog.component';
 
 @NgModule({
-  declarations: [DashboardPageComponent, AreaNavComponent, NewFormAreaDialogComponent, NewFormDialogComponent],
+  declarations: [DashboardPageComponent, AreaNavComponent, NewFormAreaDialogComponent, NewFormDialogComponent, EditFormAreaDialogComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -37,6 +38,6 @@ import { NewFormDialogComponent } from './new-form-dialog/new-form-dialog.compon
     MatToolbarModule,
     ReactiveFormsModule
   ],
-  entryComponents: [NewFormAreaDialogComponent, NewFormDialogComponent]
+  entryComponents: [NewFormAreaDialogComponent, NewFormDialogComponent, EditFormAreaDialogComponent]
 })
 export class DashboardModule { }

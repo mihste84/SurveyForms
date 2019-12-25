@@ -5,7 +5,7 @@ using SurveyForms.Core.Domain.Entities;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SurveyForms.Application.FormAreas.Commands
+namespace SurveyForms.Application.FormAreas.Commands.CreateFormArea
 {
     public class CreateFormAreaCommand : IRequest<int>
     {

@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace SurveyForms.Application.FormAreas.Commands
+namespace SurveyForms.Application.FormAreas.Commands.CreateFormArea
 {
     public class CreateFormAreaValidator : AbstractValidator<CreateFormAreaCommand>
     {
